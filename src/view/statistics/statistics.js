@@ -15,9 +15,12 @@ export const StatisticsScreen = ({route, navigation}) => {
     setIsCandlestick(false);
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#14121E'}}>
-      <CandleStickButton onPress={setLineChart} />
-      <LinechartButton onPress={setCandlestick} />
+    <View style={{flex: 1, backgroundColor: '#14121E', paddingTop:5}}>
+      <View style={{flex: 0, flexDirection: 'row'}}>
+        <CandleStickButton onPress={setLineChart} />
+        <LinechartButton onPress={setCandlestick} />
+      </View>
+
       <View style={{width: '100%', height: '40%'}}>
         {isCandlestick ? <CandleStickChartComponent /> : <LineChartComponent />}
       </View>
@@ -50,6 +53,7 @@ const LinechartButton = ({onPress}) => {
       width: 30,
       height: 30,
       borderRadius: 100,
+      marginLeft: 5,
     },
   });
   return (
