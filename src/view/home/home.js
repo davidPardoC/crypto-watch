@@ -4,13 +4,14 @@ import {CryptoService} from '../../services/crypto-service';
 import {ListItem} from './components/ListItem';
 import {ListTittle} from './components/ListTittle';
 
-export const Home = () => {
+export const Home = ({navigation}) => {
   const [cryptoList, setCryptoList] = useState([]);
   const [lastPage, setLastpage] = useState(1);
   const [isRefreshing, setIsRefreshing] = useState(false);
   useEffect(() => {
     getCryptoList(lastPage);
     return () => {
+      console.log('Unmounted');
       setCryptoList([]);
     };
   }, []);
@@ -21,9 +22,8 @@ export const Home = () => {
     setIsRefreshing(false);
   };
   return (
-    <View>
-      <ListTittle />
-      <View style={{height: '95%'}}>
+    <View style={{backgroundColor: '#14121E', height:'100%'}}>
+      <View style={{height: '100%'}}>
         <FlatList
           ListFooterComponent={() => <LoadingFooter />}
           keyExtractor={item => item.id.toString()}
@@ -40,7 +40,7 @@ export const Home = () => {
           data={cryptoList}
           onEndReachedThreshold={0.5}
           renderItem={({item}) => {
-            return <ListItem currency={item} />;
+            return <ListItem currency={item} navigation={navigation} />;
           }}
         />
       </View>
@@ -51,7 +51,7 @@ export const Home = () => {
 const LoadingFooter = () => {
   return (
     <View style={{display: 'flex'}}>
-      <ActivityIndicator animating size="large" color='#053742' />
+      <ActivityIndicator animating size="large" color="#053742" />
     </View>
   );
 };
