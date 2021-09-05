@@ -7,18 +7,23 @@ import {StatisticsScreen} from './src/view/statistics/statistics';
 /* Creating Stack Navigator */
 const Stack = createStackNavigator();
 const App = () => {
+  const HEADER_OPTIONS = {
+    headerStyle: {backgroundColor: '#14121E'},
+    headerTintColor: '#fff',
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="CryptoWatch"
           component={Home}
-          options={{
-            headerStyle: {backgroundColor: '#14121E'},
-            headerTintColor: '#fff',
-          }}
+          options={HEADER_OPTIONS}
         />
-        <Stack.Screen name="Statistics" component={StatisticsScreen} />
+        <Stack.Screen
+          name="Statistics"
+          component={StatisticsScreen}
+          options={HEADER_OPTIONS}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

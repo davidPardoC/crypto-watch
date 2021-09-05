@@ -1,0 +1,1 @@
+export const  CandlestickIcon  = require('./candlestick.svg')
